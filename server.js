@@ -21,10 +21,9 @@ app.get('/myForm',function(req,res){
 	res.send(output)
 })
 
-app.post('/myPost',function(req,res){
+app.post('/',function(req,res){
 	var output = "test post"
 	res.send(output)
 })
 
 app.listen(port);
-
