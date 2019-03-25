@@ -26,20 +26,23 @@ app.get('/myForm',function(req,res){
 	res.send(output)
 })
 
-app.get('/Page1',function(req,res){
-	var template = swig.compileFile(__dirname + '/public/html/Page1.html')
+app.get('/forex',function(req,res){
+	var template = swig.compileFile(__dirname + '/public/html/forex.html')
 	var output = template({})
 	res.send(output)
 })
-app.get('/Page2',function(req,res){
-	var template = swig.compileFile(__dirname + '/public/html/Page2.html')
+app.get('/forecast',function(req,res){
+	var template = swig.compileFile(__dirname + '/public/html/forecast.html')
 	var output = template({})
 	res.send(output)
 })
-app.get('/Page3',function(req,res){
-	var template = swig.compileFile(__dirname + '/public/html/Page3.html')
+app.get('/login',function(req,res){
+	var template = swig.compileFile(__dirname + '/public/html/login.html')
 	var output = template({})
 	res.send(output)
 })
 
-app.listen(port);
+app.listen(port)
+console.log("Web Server is running in port "+port+" ...")
+
+require('./data/mysql.js')
