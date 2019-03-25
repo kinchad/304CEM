@@ -10,22 +10,14 @@ var con = mysql.createConnection({
     database:'forex',
     dbPort:'3306'
 })
-
-app.get('/allCurrency',function(req,res){    
-        sql = 'select * from currency'
-        //sql = 'insert into currency values("USD/JPY",110.75,110.75200,null,"2019-02-21 00:00:08")'
-        con.query(sql,function(err,result){
-            if(err) throw err
-            res.send(result)
-            //console.log("1 record inserted");
-        })
+app.post('/login',function(req,res){
+    
 })
-
-app.get('/allName',function(req,res){
-    sql = 'select name from currency'
+app.post('/register',function(req,res){
+    sql = 'select * from user'
     con.query(sql,function(err,result){
         if(err) throw err
-        res.send(result)
+        res.send("POST & Query SUCCESS")
     })
 })
 

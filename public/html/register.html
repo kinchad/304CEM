@@ -2,7 +2,11 @@
 <html>
 <head>
     <link rel='stylesheet' type='text/css' href='../css/style.css'>
-
+    <script type='text/javascript'>
+        document.getElementById('btnReg').onclick = function(){
+            location.href = '/register';
+        }
+    </script>
 </head>
 <body>
 
@@ -20,10 +24,11 @@
 <div id='content' style='background-color:#EEEEEE;'>
     <form method='post' action='http://localhost:7777/register'>
         User name:<input type='text'><br>
+        Login ID:<input type='text'><br>
         Password:<input type='password'><br>
-        <input type='submit'>        
+        Confirm password:<input type='confirmPwd'><br>
+        <input type='submit'>
     </form>
-    <button id='btnReg'>Register</button>
 </div>
         
 <div id='footer' style='background-color:#FFA500;'>
@@ -33,9 +38,4 @@
 </div>
 
 </body>
-<script type='text/javascript'>
-    document.getElementById('btnReg').onclick = function(){
-        location.href = 'http://localhost:8080/register';
-    }
-</script>
 </html>

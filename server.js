@@ -41,6 +41,11 @@ app.get('/login',function(req,res){
 	var output = template({})
 	res.send(output)
 })
+app.get('/register',function(req,res){
+	var template = swig.compileFile(__dirname + '/public/html/register.html')
+	var output = template({})
+	res.send(output)
+})
 
 app.listen(port)
 console.log("Web Server is running in port "+port+" ...")
