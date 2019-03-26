@@ -7,6 +7,7 @@ var bodyParser = require('body-parser')
 
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({extended:false}))
+app.use(bodyParser.json());
 
 app.post('/',function(req,res){
 	var output = "test post"
@@ -48,6 +49,8 @@ app.get('/register',function(req,res){
 })
 
 app.listen(port)
-console.log("Web Server is running in port "+port+" ...")
+console.log("Web Server is running at port "+port+" ...")
 
 require('./data/mysql.js')
+
+
