@@ -3,9 +3,11 @@ var express = require('express')
 
 var app = express()
 var port = 8080
+
+const router = express.Router()
 var bodyParser = require('body-parser')
 
-app.use(express.static('public'))
+/* app.use(express.static('public'))
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json());
 
@@ -46,11 +48,16 @@ app.get('/register',function(req,res){
 	var template = swig.compileFile(__dirname + '/public/html/register.html')
 	var output = template({})
 	res.send(output)
+}) */
+
+router.get('/',function(req,res,next){
+	res.send('Welcome to the forex API')
 })
 
+route(app)
 app.listen(port)
 console.log("Web Server is running at port "+port+" ...")
 
-require('./data/mysql.js')
+//require('./data/mysql.js')
 
 
