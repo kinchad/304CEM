@@ -1,0 +1,10 @@
+<p>
+  home works!
+</p>
+<h1>Home</h1>
+<ul *ngIf='currency'>
+  <li *ngFor='let currency of currency'>
+    <h3>{{currency.name}}</h3>
+    <p>{{currency.bid}}</p>
+  </li>
+</ul>

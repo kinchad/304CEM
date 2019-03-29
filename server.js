@@ -1,63 +1,23 @@
-var swig = require('swig')
-var express = require('express')
+const Express = require ('express')
+const BodyParser = require('body-parser')
+const forexClient = require('./routes/forexClient')
+const App = Express()
 
-var app = express()
-var port = 8080
-
-const router = express.Router()
-var bodyParser = require('body-parser')
-
-/* app.use(express.static('public'))
-app.use(bodyParser.urlencoded({extended:false}))
-app.use(bodyParser.json());
-
-app.post('/',function(req,res){
-	var output = "test post"
-	res.send(output)
+App.set('views', path.join(__dirname, 'views'))
+App.set('view engine','ejs')
+App.use(Express.static('public'))
+App.use(BodyParser.json())
+App.use(BodyParser.urlencoded({ extended: true }))
+App.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*")
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+    next()
 })
+App.use('/', forexClient)
 
-app.get('/',function(req,res){
-	var template = swig.compileFile(__dirname + '/public/html/index.html')
-	var output = template({})
 
-	res.send(output)
+const port = 8080
+
+App.listen(port, () => {
+    console.log(`Web Server is up and running on port numbet ${port}`)
 })
-
-app.get('/myForm',function(req,res){
-	var template = swig.compileFile(__dirname + '/public/html/myForm.html')
-	var output = template({})
-	res.send(output)
-})
-
-app.get('/forex',function(req,res){
-	var template = swig.compileFile(__dirname + '/public/html/forex.html')
-	var output = template({})
-	res.send(output)
-})
-app.get('/forecast',function(req,res){
-	var template = swig.compileFile(__dirname + '/public/html/forecast.html')
-	var output = template({})
-	res.send(output)
-})
-app.get('/login',function(req,res){
-	var template = swig.compileFile(__dirname + '/public/html/login.html')
-	var output = template({})
-	res.send(output)
-})
-app.get('/register',function(req,res){
-	var template = swig.compileFile(__dirname + '/public/html/register.html')
-	var output = template({})
-	res.send(output)
-}) */
-
-router.get('/',function(req,res,next){
-	res.send('Welcome to the forex API')
-})
-
-route(app)
-app.listen(port)
-console.log("Web Server is running at port "+port+" ...")
-
-//require('./data/mysql.js')
-
-

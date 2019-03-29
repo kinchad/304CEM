@@ -1,0 +1,16 @@
+<p>Latest currency rates</p>
+<table border='1'>
+  <tr><th>Name</th><th>Bid</th><th>Ask</th><th>Time</th></tr>
+  <tr *ngFor='let currency of currency'>
+    <td>{{currency.name}}</td>
+    <td>{{currency.bid}}</td>
+    <td>{{currency.ask}}</td>
+    <td>{{currency.time}}</td>
+  </tr>  
+</table>
+<!-- <ul *ngIf='currency'>
+    <li *ngFor='let currency of currency'>
+      <h3>{{currency.name}}</h3>
+      <p>{{currency.bid}}</p>
+    </li>
+</ul> -->
