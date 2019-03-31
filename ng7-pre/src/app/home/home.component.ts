@@ -1,23 +1,49 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 
+import { Subscription } from 'rxjs';
+import { first } from 'rxjs/operators';
+import { User } from '../_models/user';
+import { UserService } from '../_services/user.service';
+import { AuthenticationService } from '../_services/authentication.service'
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  currency: Object;
-  constructor(private data: DataService) { }
+  currentUser: User;
+  currentUserSubscription: Subscription;
+  users: User[] = [];
 
-  ngOnInit() {
-    this.data.getCurrency().subscribe(data=>{
-      this.currency = data
-      console.log(this.currency)
-    })
+  constructor(        
+    private authenticationService: AuthenticationService,
+    private userService: UserService
+  ) {
+    this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
+      this.currentUser = user;
+    });
   }
 
-  firstClick(){
-    this.data.firstClick();
+  ngOnInit() {
+    this.loadAllUsers();
+  }
+
+  ngOnDestroy() {
+    // unsubscribe to ensure no memory leaks
+    this.currentUserSubscription.unsubscribe();
+  }
+
+  deleteUser(id: number) {
+      this.userService.delete(id).pipe(first()).subscribe(() => {
+          this.loadAllUsers()
+      });
+  }
+
+  private loadAllUsers() {
+      this.userService.getAll().pipe(first()).subscribe(users => {
+          this.users = users;
+      });
   }
 }
