@@ -19,7 +19,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             if (request.url.endsWith('/users/authenticate') && request.method === 'POST') {
                 // find if any user matches login credentials
                 let filteredUsers = users.filter(user => {
-                    return user.username === request.body.username && user.password === request.body.password;
+                    return user.loginID === request.body.loginID && user.password === request.body.password;
                 });
 
                 if (filteredUsers.length) {
@@ -27,7 +27,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     let user = filteredUsers[0];
                     let body = {
                         id: user.id,
-                        username: user.username,
+                        loginID: user.loginID,
                         firstName: user.firstName,
                         lastName: user.lastName,
                         token: 'fake-jwt-token'
@@ -36,7 +36,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     return of(new HttpResponse({ status: 200, body: body }));
                 } else {
                     // else return 400 bad request
-                    return throwError({ error: { message: 'Username or password is incorrect' } });
+                    return throwError({ error: { message: 'LoginID or password is incorrect' } });
                 }
             }
 
@@ -74,9 +74,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 let newUser = request.body;
 
                 // validation
-                let duplicateUser = users.filter(user => { return user.username === newUser.username; }).length;
+                let duplicateUser = users.filter(user => { return user.loginID === newUser.loginID; }).length;
                 if (duplicateUser) {
-                    return throwError({ error: { message: 'Username "' + newUser.username + '" is already taken' } });
+                    return throwError({ error: { message: 'LoginID "' + newUser.loginID + '" is already taken' } });
                 }
 
                 // save new user
