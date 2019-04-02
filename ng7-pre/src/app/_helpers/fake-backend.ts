@@ -21,7 +21,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 let filteredUsers = users.filter(user => {
                     return user.loginID === request.body.loginID && user.password === request.body.password;
                 });
-
                 if (filteredUsers.length) {
                     // if login details are valid return 200 OK with user details and fake jwt token
                     let user = filteredUsers[0];
@@ -32,7 +31,6 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                         lastName: user.lastName,
                         token: 'fake-jwt-token'
                     };
-
                     return of(new HttpResponse({ status: 200, body: body }));
                 } else {
                     // else return 400 bad request

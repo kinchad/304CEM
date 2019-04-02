@@ -12,6 +12,7 @@ import { AuthenticationService } from '../_services/authentication.service'
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
+  testWord= 'TestWord';
   currentUser: User;
   currentUserSubscription: Subscription;
   users: User[] = [];
@@ -25,11 +26,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
   ngOnInit() {
-    this.loadAllUsers();
+    //this.loadAllUsers();    
   }
   ngOnDestroy() {
     // unsubscribe to ensure no memory leaks
-    this.currentUserSubscription.unsubscribe();
+    //this.currentUserSubscription.unsubscribe();
   }
   deleteUser(id: number) {
     this.userService.delete(id).pipe(first()).subscribe(() => {

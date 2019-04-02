@@ -23,7 +23,6 @@ export class NavComponent implements OnInit {
   ) { 
     this.currentUserSubscription = this.authenticationService.currentUser.subscribe(user => {
       this.currentUser = user;
-      //this.guestMode = false;
       if(this.currentUser){
         this.guestMode = false;
       }

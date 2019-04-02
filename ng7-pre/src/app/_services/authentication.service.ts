@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-
 import { User } from '../_models/user';
-import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -15,12 +13,11 @@ export class AuthenticationService {
         this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
     }
-
     public get currentUserValue(): User {
         return this.currentUserSubject.value;
     }
 
-    login(loginID: string, password: string) {
+/*     login(loginID: string, password: string) {
         return this.http.post<any>(`${environment.apiUrl}/users/authenticate`, { loginID, password })
             .pipe(map(user => {
                 // login successful if there's a jwt token in the response
@@ -31,6 +28,16 @@ export class AuthenticationService {
                 }
                 return user;
             }));
+    } */
+    login(loginID: string, password: string){
+        return this.http.post('http://localhost:7777/userLogin',{loginID,password}).pipe(map(user=>{
+            var currentUser = JSON.parse(JSON.stringify(user[0]))
+            if (currentUser.login) {                
+                localStorage.setItem('currentUser', JSON.stringify(currentUser.login));
+                this.currentUserSubject.next(currentUser.login);
+            }
+            return user;
+        }))
     }
     logout() {
         // remove user from local storage to log user out

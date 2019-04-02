@@ -9,10 +9,10 @@ import { registerComponent} from './register/register.component';
 import { AuthGuard } from './_guards/auth.guard';
 
 const routes: Routes = [
-  {path:'',component: HomeComponent,canActivate:[AuthGuard] },
+  {path:'',component: HomeComponent },
   {path: 'forex', component: forexComponent },
   {path: 'login', component: loginComponent },
-  {path: 'forecast', component: forecastComponent },
+  {path: 'forecast', component: forecastComponent, canActivate:[AuthGuard] },
   {path: 'register', component: registerComponent },
 
   // otherwise redirect to home

@@ -25,7 +25,6 @@ export class registerComponent implements OnInit {
             this.router.navigate(['/']);
         }
     }
-
     ngOnInit() {
         this.registerForm = this.formBuilder.group({
             userName: ['', Validators.required],
@@ -42,7 +41,6 @@ export class registerComponent implements OnInit {
         if (this.registerForm.invalid) {
             return;
         }
-
         this.loading = true;
         this.userService.register(this.registerForm.value)
             .pipe(first())
