@@ -28,9 +28,8 @@
     <div class="form-group">
             <label for="confirmPwd">Confirm Password: </label>
             <input type="password" formControlName="confirmPwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.controls.confirmPwd.errors }" />
-            <div *ngIf="submitted && registerForm.controls.confirmPwd.errors" class="invalid-feedback">
-                <div *ngIf="registerForm.controls.confirmPwd.errors.required">Password is required</div>
-                <div *ngIf="registerForm.controls.confirmPwd.errors.minlength">Password must be at least 6 characters</div>
+            <div *ngIf="submitted" class="invalid-feedback">
+                <div *ngIf="registerForm.hasError('notSame')">Confirm password does not match</div>
             </div>
     </div>
     <br>

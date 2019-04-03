@@ -16,25 +16,13 @@ export class AuthenticationService {
     public get currentUserValue(): User {
         return this.currentUserSubject.value;
     }
-
-/*     login(loginID: string, password: string) {
-        return this.http.post<any>(`${environment.apiUrl}/users/authenticate`, { loginID, password })
-            .pipe(map(user => {
-                // login successful if there's a jwt token in the response
-                if (user && user.token) {
-                    // store user details and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem('currentUser', JSON.stringify(user));
-                    this.currentUserSubject.next(user);
-                }
-                return user;
-            }));
-    } */
     login(loginID: string, password: string){
         return this.http.post('http://localhost:7777/userLogin',{loginID,password}).pipe(map(user=>{
             var currentUser = JSON.parse(JSON.stringify(user[0]))
+            console.log(currentUser)
             if (currentUser.login) {                
-                localStorage.setItem('currentUser', JSON.stringify(currentUser.login));
-                this.currentUserSubject.next(currentUser.login);
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                this.currentUserSubject.next(currentUser);
             }
             return user;
         }))

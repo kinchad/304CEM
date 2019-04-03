@@ -7,11 +7,10 @@ import { HttpClient } from '@angular/common/http';
 export class DataService {
   constructor(private http: HttpClient) { }
 
-  firstClick(){
-    return console.log('clicked')
-  }
-
   getCurrency(){
     return this.http.get('http://localhost:7777/getLatestCurrency')
+  }
+  getCurrencyByName(currencyName: string){
+    return this.http.get('http://localhost:7777/getCurrencyByName/?name='+currencyName)
   }
 }

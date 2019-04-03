@@ -1,11 +1,37 @@
-<h1>Home Page</h1>
-<h3>Name:{{currentUser}}</h3>
-<!--
-<h3>All registered users:</h3>
-<ul>
-    <li *ngFor="let user of users">
-        {{user.loginID}} ({{user.firstName}} {{user.lastName}})
-        - <a (click)="deleteUser(user.id)" class="text-danger">Delete</a>
-    </li>
-</ul>
--->
+<div *ngIf='currentUser; else guestMode'>
+    <h1>Home</h1>
+    <h4>Login ID: {{currentUser.login}}</h4>
+    <h4>User name: {{currentUser.name}}</h4>    
+    <h4>Email Address: {{currentUser.email}}</h4>
+
+    <button (click)='clickChangeBtn()'>Update personal information</button>
+</div>
+
+<form [formGroup]="updateForm" (ngSubmit)="onSubmit()" *ngIf='wantToUpdate'>
+    New User Name: <input type='text' formControlName='userName'>
+    <div *ngIf="submitted && updateForm.controls.userName.errors">
+        <div *ngIf="updateForm.controls.userName.errors.required">User name is required</div>
+    </div>    
+    <br>
+    New Password: <input type='password' formControlName='password'>
+    <div *ngIf="submitted && updateForm.controls.password.errors">
+        <div *ngIf="updateForm.controls.password.errors.required">Password is required</div>
+        <div *ngIf="updateForm.controls.password.errors.minlength">Password must be at least 6 characters</div>
+    </div>
+    <br>
+    Confirm New Password: <input type='password' formControlName='confirmPwd'>
+    <div *ngIf="submitted" class="invalid-feedback">
+        <div *ngIf="updateForm.hasError('notSame')">Confirm password does not match</div>
+    </div>
+    <br>
+    New Email: <input type='email' formControlName='email'><br>
+    <button [disabled]="loading">Update</button>
+    <button (click)='clickCancelBtn()'>Cancel</button>
+</form>
+
+<ng-template #guestMode>
+    <h1>Hi , Guest !</h1>
+    <h4>This is a prediction system on foreign currency rate market.<br>
+        As a guest user you can view the latest currency rates information,<br>
+        but you have to login for getting the prediction results.</h4>
+</ng-template>

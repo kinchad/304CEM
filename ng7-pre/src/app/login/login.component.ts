@@ -40,9 +40,7 @@ export class loginComponent implements OnInit {
   }
    onSubmit(){
     this.submitted = true;
-    if(this.loginForm.invalid){
-      return;
-    }
+    if(this.loginForm.invalid){      return;    }
     this.success = true;
 
     this.authenticationService.login(this.loginForm.controls.loginID.value, this.loginForm.controls.password.value)

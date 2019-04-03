@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import { AlertService } from '../_services/alert.service';
@@ -30,9 +30,16 @@ export class registerComponent implements OnInit {
             userName: ['', Validators.required],
             loginID: ['', Validators.required],
             password: ['', [Validators.required, Validators.minLength(6)]],
-            confirmPwd: ['',[Validators.required, Validators.minLength(6)]],
-            email: ['']
+            confirmPwd: ['',[Validators.required, Validators.minLength(6),]],
+            email: ['']            
+        },{
+            validator: this.passwordMatching
         });
+    }
+    passwordMatching(group: FormGroup){
+        let pass = group.controls.password.value;
+        let confirmPwd = group.controls.confirmPwd.value;
+        return pass === confirmPwd ? null : { notSame: true }
     }
     onSubmit() {
         this.submitted = true;
