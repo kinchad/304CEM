@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./nav.component.scss']
 })
 export class NavComponent implements OnInit {
-  appTitle:string = 'FOREX';
+  appTitle:string = 'FOREX Prediction System';
   guestMode = true;
 
   currentUser: User;

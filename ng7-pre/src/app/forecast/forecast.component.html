@@ -1,19 +1,26 @@
 <div id='content' style='background-color:#EEEEEE;'>
-  <select id='currency'>
-      <option>EUR/USD</option>
-      <option>USD/JPY</option>
+  <select (change)='selectCurrencyName($event)'>
+      <option *ngFor='let curName of allCurrencyName'>{{curName.name}}</option>
   </select>
-  <select id='algorithm'>
-      <option>Linear Regression</option>
-      <option>Random Forest</option>
+  <select (change)='selectAlgorithm($event)'>
+      <option value='LinearRegression' selected>Linear Regression</option>
+      <option value='RandomForest' >Random Forest</option>
   </select>
-  <select id='timeSeries'>
-      <option>7 day forecast</option>
-      <option>1 month forecast</option>
-      <option>1 year forecast</option>
+  <select (change)='selectTimeSeries($event)'>
+      <option value='sevenDay'>7 day forecast</option>
+      <option value='oneMonth'>1 month forecast</option>
+      <option value='oneYear'>1 year forecast</option>
   </select>
 
   <div id='predictContent'>
-      <h1>Predict content</h1>
+    <table border='1'>
+    <tr><th>Name</th><th>Bid</th><th>Ask</th><th>Time</th></tr>
+    <tr *ngFor='let result of predictResult'>
+        <td>{{result.name}}</td>
+        <td>{{result.bid}}</td>
+        <td>{{result.ask}}</td>
+        <td>{{result.time}}</td>
+    </tr>  
+    </table>
   </div>
 </div>

@@ -74,14 +74,4 @@ export class HomeComponent implements OnInit, OnDestroy {
   clickCancelBtn(){
     this.wantToUpdate = false;
   }
-  deleteUser(id: number) {
-    this.userService.delete(id).pipe(first()).subscribe(() => {
-        this.loadAllUsers()
-    });
-  }
-  private loadAllUsers() {
-    this.userService.getAll().pipe(first()).subscribe(users => {
-        this.users = users;
-    });
-  }
 }

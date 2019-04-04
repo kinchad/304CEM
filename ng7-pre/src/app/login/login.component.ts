@@ -47,9 +47,9 @@ export class loginComponent implements OnInit {
       .pipe(first())
       .subscribe(
         data => {
-          this.router.navigate([this.returnUrl]);
-          this.alertService.success('Login successful', true);
-          //this.router.navigate(['/']);
+          //this.router.navigate([this.returnUrl]);
+          this.alertService.success('Welcome, '+data[0].name, true);
+          this.router.navigate(['/']);
         },
         error => {
           //this.alertService.error(error);          
