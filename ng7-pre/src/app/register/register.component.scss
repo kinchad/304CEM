@@ -1,28 +1,21 @@
 div.content{
-    display: flex;
+    text-align: center;   
 }
-
-button{
-    font-size: .9em;
-    cursor: pointer;
-    padding: .5em;
-}
-
 form{
-    margin-left: 8em;
     border:.1em solid gray;
     border-radius: 4px;
     width: fit-content;
-    padding: 1em;
+    padding: 1em;    
     font-size: 1em;
     display: inline-block;
+    text-align: left;
 
     input{
         height: 1.5em;
-        width: 10em;
+        width: 85%;
         border-radius: 4px;
-        margin: .5em;
-        font-size: .8em;              
+        font-size: .8em;    
+        //display: block;          
     }
     input:focus{
         background-color: #c3c9d6;
@@ -32,10 +25,21 @@ form{
         cursor: pointer;
         padding: .3em .3em;
         margin: .3em .3em;
-        font-size: .8em;
+        font-size: 1em;
         border: none;
-        width: 10em;
         background-color: rgb(57, 98, 187);
+        font-family: 'Courier New', Courier, monospace;
+    }
+    a{
+        padding: .3em .3em;
+        margin: .3em .3em;
+        font-size: 1em;
+        background: rgb(57, 98, 187);
+        color: black;
+        font-family: 'Courier New', Courier, monospace;
+    }
+    div.btnGroup{
+        text-align: center;
     }
 }
 div.errorMessage{

@@ -1,9 +1,9 @@
-<p>Latest currency rates</p>
+<h3>Latest currency rates</h3>
 <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
   <input type='text' formControlName='searchKey'>
   <input type='submit' value='Search'>
 </form>
-<table border='1'>
+<table>
   <tr><th>Name</th><th>Bid</th><th>Ask</th><th>Time</th></tr>
   <tr *ngFor='let currency of currency'>
     <td>{{currency.name}}</td>

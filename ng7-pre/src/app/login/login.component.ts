@@ -48,13 +48,13 @@ export class loginComponent implements OnInit {
       .subscribe(
         data => {
           //this.router.navigate([this.returnUrl]);
-          this.alertService.success('Welcome, '+data[0].name, true);
+          //this.alertService.success('Welcome, '+data[0].name, true);
           this.router.navigate(['/']);
         },
         error => {
           //this.alertService.error(error);          
           this.success = false;
-          this.alertService.error('Could not Logged in.');
+          this.alertService.error('LoginID or Password incorrect.');
         });
   }
 }
