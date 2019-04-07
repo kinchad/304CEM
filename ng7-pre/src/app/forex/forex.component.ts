@@ -34,7 +34,6 @@ export class forexComponent implements OnInit {
 
     let key = this.searchForm.controls.searchKey.value
 
-    console.log(key)
     if(key==''){
       this.showLatestCurrency()
     }else{

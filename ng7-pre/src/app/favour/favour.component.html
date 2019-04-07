@@ -1,0 +1,21 @@
+<h3>Favourite currency list</h3>
+<table>    
+  <tr><th></th><th>Currency Name</th><th>Remarks</th></tr>
+  <tr *ngFor='let result of favourList'>
+    <td><button (click)='delete(result.currencyName)'>X</button></td>
+    <td>{{result.currencyName}}</td>
+    <td>{{result.remarks}}</td>
+  </tr>  
+</table>
+
+
+<form [formGroup]="favourForm" (ngSubmit)="onSubmit()">
+    <h3>Add a favourite currency pairs</h3>
+    Select your favourite:<br>
+    <select formControlName='favourCurrency'>
+      <option *ngFor='let curName of allCurrencyName'>{{curName.name}}</option>
+    </select>
+    <br>Remarks:<br>
+    <textarea formControlName='remarks'></textarea><br>
+    <input type='submit' value='Add'>
+</form>

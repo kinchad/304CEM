@@ -13,7 +13,6 @@ import { AuthenticationService } from '../_services/authentication.service';
 })
 export class registerComponent implements OnInit {
     registerForm: FormGroup;
-    loading = false;
     submitted = false;
 
     constructor(
@@ -51,7 +50,6 @@ export class registerComponent implements OnInit {
         if (this.registerForm.invalid) {
             return;
         }
-        this.loading = true;
         this.userService.register(this.registerForm.value)
             .pipe(first())
             .subscribe(
@@ -61,7 +59,6 @@ export class registerComponent implements OnInit {
                 },
                 error => {
                     this.alertService.error(error);
-                    this.loading = false;
                 });
     }
 }
