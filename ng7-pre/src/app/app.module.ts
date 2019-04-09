@@ -18,6 +18,7 @@ import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { registerComponent } from './register/register.component';
 import { favourComponent } from './favour/favour.component';
+import { traderComponent } from './trader/trader.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { favourComponent } from './favour/favour.component';
     forecastComponent,
     AlertComponent,
     registerComponent,
-    favourComponent
+    favourComponent,
+    traderComponent
   ],
   imports: [
     BrowserModule,

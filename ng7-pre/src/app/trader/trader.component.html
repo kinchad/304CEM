@@ -1,0 +1,23 @@
+<p>This is a demo account for trading in FOREX.</p>
+<p>You can buy a currency pairs with <strong>Ask</strong> price, and sell it with <strong>Bid</strong> price.</p>
+<select (change)='selectCurrencyName($event)'>
+    <option *ngFor='let curName of allCurrencyName'>{{curName.name}}</option>
+</select>
+
+Ask:{{this.currencyAsk}}
+
+<form [formGroup]='buyForm' (ngSubmit)="buy()">
+    <input type='number' formControlName='usd'>$USD
+    <input type='submit' value='Buy'>
+</form>
+
+<p>Your order:</p>
+<table>    
+    <tr><th>Currency Name</th><th>Buy</th><th>Bid</th><th></th></tr>
+    <tr *ngFor='let result of orderList'>
+      <td>{{result.currencyName}}</td>
+      <td>{{result.currentAsk}}</td>
+      <td>{{test(result.currencyName)}}</td>
+      <td><button (click)='sellOrder(result.currencyName)'>Sell</button></td>
+    </tr>
+</table>

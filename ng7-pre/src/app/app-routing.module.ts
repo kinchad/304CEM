@@ -8,6 +8,7 @@ import { forecastComponent} from './forecast/forecast.component';
 import { favourComponent} from './favour/favour.component';
 import { registerComponent} from './register/register.component';
 import { AuthGuard } from './_guards/auth.guard';
+import { traderComponent } from './trader/trader.component';
 
 const routes: Routes = [
   {path:'',component: HomeComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: 'login', component: loginComponent },
   {path: 'forecast', component: forecastComponent, canActivate:[AuthGuard] },
   {path: 'favour', component: favourComponent, canActivate:[AuthGuard]},
+  {path: 'trader', component: traderComponent, canActivate:[AuthGuard]},
   {path: 'register', component: registerComponent },
 
   // otherwise redirect to home

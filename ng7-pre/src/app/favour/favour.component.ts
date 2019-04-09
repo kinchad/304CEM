@@ -22,10 +22,15 @@ export class favourComponent implements OnInit {
   currentUser: User;
   currentUserSubscription: Subscription;
   favourForm: FormGroup;
+  updateForm: FormGroup;
   favourList: Object;
 
   submitted = false;
   success = false;
+  showUpdateForm = false;
+  showFavourForm = false;
+
+  selectedCurrency = '';
 
   constructor(
     private data: DataService,
@@ -43,6 +48,9 @@ export class favourComponent implements OnInit {
       remarks:[''],
       favourCurrency:['EUR/USD']
     })
+    this.updateForm = this.formBuilder.group({
+      remarks:['']
+    })
     this.data.getCurrencyName().subscribe(data=>{
       this.allCurrencyName = data
     })
@@ -57,10 +65,8 @@ export class favourComponent implements OnInit {
     
     this.data.addToFavour(this.currentUser.login,this.favourForm.value)
       .pipe(first()).subscribe(
-        data => {
-            this.alertService.success('New favourite item added.',true);
-            this.router.navigate(['/']);
-            //this.router.navigate(['/favour']);
+        data => {            
+            location.reload();
         },error => {
             this.alertService.error(error);
         });
@@ -68,11 +74,30 @@ export class favourComponent implements OnInit {
   delete(favourCurrency: string){
     this.data.deleteFavour(this.currentUser.login,favourCurrency)
       .pipe(first()).subscribe(
-        data=>{          
-          this.router.navigate(['/']);
+        data=>{
+          location.reload();
         },error=>{
           this.alertService.error(error);
         }
       ) 
+  }
+  update(favourCurrency: string){
+     this.data.updateFavour(this.currentUser.login,favourCurrency,this.updateForm.value)
+      .pipe(first()).subscribe(
+        data=>{
+          location.reload();
+        },error=>{
+          this.alertService.error(error);
+        }
+      )
+  }
+  displayUpdateForm(favourCurrency: string){
+    this.showFavourForm = false;
+    this.showUpdateForm = true;
+    this.selectedCurrency = favourCurrency;
+  }
+  displayFavourForm(){
+    this.showUpdateForm = false;
+    this.showFavourForm = true;    
   }
 }
