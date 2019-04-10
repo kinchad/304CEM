@@ -1,8 +1,6 @@
-import { Component } from '@angular/core';
-
-import { Router } from '@angular/router';
-import { AuthenticationService } from './_services/authentication.service';
-import { User } from './_models/user';
+import { Component } from '@angular/core'
+import { AuthenticationService } from './_services/authentication.service'
+import { User } from './_models/user'
 
 @Component({
   selector: 'app-root',
@@ -10,14 +8,11 @@ import { User } from './_models/user';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ng7-pre';
-
-  currentUser: User;
+  currentUser: User
 
   constructor(
-      //private router: Router,
       private authenticationService: AuthenticationService
   ) {
-      this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+      this.authenticationService.currentUser.subscribe(x => this.currentUser = x)
   }
 }

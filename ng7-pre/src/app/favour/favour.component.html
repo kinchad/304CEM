@@ -1,29 +1,37 @@
 <h3>Favourite currency list</h3>
-<table>    
+<div class='content'>
+<div>
+<button (click)='displayFavourForm()'>Add</button>
+<table>
   <tr><th></th><th>Currency Name</th><th>Remarks</th><th></th></tr>
   <tr *ngFor='let result of favourList'>
     <td><button (click)='delete(result.currencyName)'>X</button></td>
     <td>{{result.currencyName}}</td>
     <td>{{result.remarks}}</td>
     <td><button (click)='displayUpdateForm(result.currencyName)'>Edit</button></td>
-  </tr>  
+  </tr>
 </table>
-
-<button (click)='displayFavourForm()'>Add</button>
-
+</div>
 <form [formGroup]="favourForm" (ngSubmit)="onSubmit()" *ngIf='showFavourForm'>
     <h3>Add a favourite currency pairs</h3>
     Select your favourite:<br>
     <select formControlName='favourCurrency'>
       <option *ngFor='let curName of allCurrencyName'>{{curName.name}}</option>
     </select>
-    <br>Remarks:<br>
+    <br><br><br>Remarks:<br>
     <textarea formControlName='remarks'></textarea><br>
+    <div *ngIf="submitted && favourForm.controls.remarks.errors" class='errorMessage'>
+        <div *ngIf="favourForm.controls.remarks.errors.required">*Remarks is required</div>
+      </div>
     <input type='submit' value='Add'>
 </form>
 <form [formGroup]='updateForm' (ngSubmit)="update(selectedCurrency)" *ngIf='showUpdateForm'>
     <h3>Edit the remarks of {{selectedCurrency}}</h3>
-    Remarks:<br>
+    Remarks:<br>    
     <textarea formControlName='remarks'></textarea><br>
+    <div *ngIf="submitted && updateForm.controls.remarks.errors" class='errorMessage'>
+      <div *ngIf="updateForm.controls.remarks.errors.required">*Remarks is required</div>
+    </div>
     <input type='submit' value='Edit'>
 </form>
+</div>

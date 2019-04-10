@@ -1,25 +1,24 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { favourComponent } from './favour.component';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing'
+import { favourComponent } from './favour.component'
 
 describe('FavourComponent', () => {
-  let component: favourComponent;
-  let fixture: ComponentFixture<favourComponent>;
+  let component: favourComponent
+  let fixture: ComponentFixture<favourComponent>
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ favourComponent ]
     })
-    .compileComponents();
-  }));
+    .compileComponents()
+  }))
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(favourComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(favourComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

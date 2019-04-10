@@ -1,23 +1,15 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+//Data handling through the API Server which is connected with MySQL database.
 
-import { favours } from 'src/app/_models/favour';
-import { Order } from 'src/app/_models/order';
+import { Injectable } from '@angular/core'
+import { HttpClient } from '@angular/common/http'
+import { favours } from 'src/app/_models/favour'
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({  providedIn: 'root' })
 export class DataService {
   constructor(private http: HttpClient) { }
 
   getCurrency(){
     return this.http.get('http://localhost:7777/getLatestCurrency')
-  }
-  getOneCurrencyAsk(currencyName: string){
-    return this.http.get('http://localhost:7777/getOneCurrencyAsk/?name='+currencyName)
-  }
-  getOneCurrencyBid(currencyName: string){
-    return this.http.get('http://localhost:7777/getOneCurrencyBid/?name='+currencyName)
   }
   getCurrencyByName(currencyName: string){
     return this.http.get('http://localhost:7777/getCurrencyByName/?name='+currencyName)
@@ -39,11 +31,5 @@ export class DataService {
   }
   updateFavour(loginID: string, currencyName: string,formValue: favours){
     return this.http.put('http://localhost:7777/updateFavour/'+loginID+'/'+currencyName,formValue)
-  }
-  buyOrder(loginID: string, formValue: Order){
-    return this.http.post('http://localhost:7777/buyOrder/'+loginID, formValue)
-  }
-  getOrderList(loginID: string){
-    return this.http.get('http://localhost:7777/getOrderList/?loginID='+loginID)
   }
 }

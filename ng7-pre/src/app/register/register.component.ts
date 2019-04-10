@@ -1,19 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { first } from 'rxjs/operators';
-
-import { AlertService } from '../_services/alert.service';
-import { UserService } from '../_services/user.service';
-import { AuthenticationService } from '../_services/authentication.service';
+import { Component, OnInit } from '@angular/core'
+import { Router } from '@angular/router'
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
+import { first } from 'rxjs/operators'
+import { AlertService } from '../_services/alert.service'
+import { UserService } from '../_services/user.service'
+import { AuthenticationService } from '../_services/authentication.service'
 
 @Component({
     templateUrl: 'register.component.html',
     styleUrls: ['./register.component.scss']
 })
 export class registerComponent implements OnInit {
-    registerForm: FormGroup;
-    submitted = false;
+    //define register form and its status
+    registerForm: FormGroup
+    submitted = false
 
     constructor(
         private formBuilder: FormBuilder,
@@ -24,7 +24,7 @@ export class registerComponent implements OnInit {
     ) { 
         // redirect to home if already logged in
         if (this.authenticationService.currentUserValue) { 
-            this.router.navigate(['/']);
+            this.router.navigate(['/'])
         }
     }
     ngOnInit() {
@@ -38,27 +38,22 @@ export class registerComponent implements OnInit {
             validator: this.passwordMatching
         });
     }
-    passwordMatching(group: FormGroup){
-        let pass = group.controls.password.value;
-        let confirmPwd = group.controls.confirmPwd.value;
+    passwordMatching(group: FormGroup){     //customize validator for    confirm password
+        let pass = group.controls.password.value
+        let confirmPwd = group.controls.confirmPwd.value
         return pass === confirmPwd ? null : { notSame: true }
     }
-    onSubmit() {
-        this.submitted = true;
-
-        // stop here if form is invalid
-        if (this.registerForm.invalid) {
-            return;
-        }
+    onSubmit() {        //Click the register button
+        this.submitted = true  
+        if (this.registerForm.invalid) {   return    }     // stop here if form is invalid
         this.userService.register(this.registerForm.value)
-            .pipe(first())
-            .subscribe(
+            .pipe(first()).subscribe(
                 data => {
-                    this.alertService.success('Registration successful', true);
-                    this.router.navigate(['/login']);
+                    this.alertService.success('Registration successful', true)
+                    this.router.navigate(['/login'])
                 },
                 error => {
-                    this.alertService.error(error);
+                    this.alertService.error(error)
                 });
     }
 }

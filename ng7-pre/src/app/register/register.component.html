@@ -1,47 +1,47 @@
 <div class='content'>
 <h2>Register</h2>
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    <div class="form-group">
+    <div>
         <label for="userName">User Name: </label>
-        <input type="text" formControlName="userName" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.controls.userName.errors }" />
+        <input type="text" formControlName="userName" [ngClass]="{ 'is-invalid': submitted && registerForm.controls.userName.errors }" />
         <div *ngIf="submitted && registerForm.controls.userName.errors" class="errorMessage">
             <div *ngIf="registerForm.controls.userName.errors.required">*User name is required</div>
         </div>
     </div>
     <br>
-    <div class="form-group">
+    <div>
         <label for="loginID">LoginID: </label>
-        <input type="text" formControlName="loginID" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.controls.loginID.errors }" />
+        <input type="text" formControlName="loginID" [ngClass]="{ 'is-invalid': submitted && registerForm.controls.loginID.errors }" />
         <div *ngIf="submitted && registerForm.controls.loginID.errors" class="errorMessage">
             <div *ngIf="registerForm.controls.loginID.errors.required">*LoginID is required</div>
         </div>
     </div>
     <br>
-    <div class="form-group">
+    <div>
         <label for="password">Password: </label>
-        <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.controls.password.errors }" />
+        <input type="password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && registerForm.controls.password.errors }" />
         <div *ngIf="submitted && registerForm.controls.password.errors" class="errorMessage">
             <div *ngIf="registerForm.controls.password.errors.required">*Password is required</div>
             <div *ngIf="registerForm.controls.password.errors.minlength">*Password must be at least 6 characters</div>
         </div>
     </div>
     <br>
-    <div class="form-group">
+    <div>
         <label for="confirmPwd">Confirm Password: </label>
-        <input type="password" formControlName="confirmPwd" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.controls.confirmPwd.errors }" />
+        <input type="password" formControlName="confirmPwd" [ngClass]="{ 'is-invalid': submitted && registerForm.controls.confirmPwd.errors }" />
         <div *ngIf="submitted" class="errorMessage">
             <div *ngIf="registerForm.hasError('notSame')">*Confirm password does not match</div>
         </div>
     </div>
     <br>
-    <div class="form-group">
+    <div>
         <label for="email">Email: </label>
-        <input type="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && registerForm.controls.email.errors }" />
+        <input type="email" formControlName="email" [ngClass]="{ 'is-invalid': submitted && registerForm.controls.email.errors }" />
     </div>
     <br>
     <div class='btnGroup'>
-    <button class="inPageBtn">Register</button>
-    <a routerLink="/login" class="inPageBtn">Cancel</a>
+        <button class="inPageBtn">Register</button>
+        <a routerLink="/login" class="inPageBtn">Cancel</a>
     </div>
 </form>
 </div>

@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
-import { Router, ActivatedRoute } from '@angular/router';
-import { first } from 'rxjs/operators';
-import { AlertService } from '../_services/alert.service';
+import { Component, OnInit } from '@angular/core'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
+import { Router, ActivatedRoute } from '@angular/router'
+import { first } from 'rxjs/operators'
+import { AlertService } from '../_services/alert.service'
 import { AuthenticationService } from '../_services/authentication.service'
 
 @Component({
@@ -12,49 +11,44 @@ import { AuthenticationService } from '../_services/authentication.service'
   styleUrls: ['./login.component.scss']
 })
 export class loginComponent implements OnInit {
-  loginForm: FormGroup;
-  submitted = false;
-  success = false;
-  returnUrl: string;
+  //define the login form and it status
+  loginForm: FormGroup
+  submitted = false
+  success = false
 
   constructor(
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
     private alertService: AlertService
   ) {
       // redirect to home if already logged in
       if (this.authenticationService.currentUserValue) { 
-        this.router.navigate(['/']);
+        this.router.navigate(['/'])
       }
   }
-
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       loginID:['',Validators.required],
       password:['',Validators.required]
     })
-    // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
-   onSubmit(){
-    this.submitted = true;
-    if(this.loginForm.invalid){      return;    }
-    this.success = true;
+  onSubmit(){
+    //Apply validation after submit of the form, break from onSubmit() if invalid
+    this.submitted = true
+    if(this.loginForm.invalid){   return   }
+    this.success = true
 
+    //Check if the login is valid or not
     this.authenticationService.login(this.loginForm.controls.loginID.value, this.loginForm.controls.password.value)
       .pipe(first())
       .subscribe(
-        data => {
-          //this.router.navigate([this.returnUrl]);
-          //this.alertService.success('Welcome, '+data[0].name, true);
-          this.router.navigate(['/']);
+        data => {       //route to home page if valid
+          this.router.navigate(['/'])
         },
-        error => {
-          //this.alertService.error(error);          
-          this.success = false;
-          this.alertService.error('LoginID or Password incorrect.');
-        });
+        error => {       //Show error if invalid
+          this.success = false
+          this.alertService.error('LoginID or Password incorrect.')
+        })
   }
 }
