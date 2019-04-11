@@ -1,0 +1,42 @@
+div.content{
+    display: flex;
+}
+button{
+    font-size: .9em;
+    cursor: pointer;
+    padding: .5em;
+}
+form{
+    margin-left: 8em;
+    border:.1em solid gray;
+    border-radius: 4px;
+    width: fit-content;
+    padding: 1em;
+    font-size: 1em;
+    display: inline-block;
+
+    input{
+        height: 1.5em;
+        width: 10em;
+        border-radius: 4px;
+        margin: .5em;
+        font-size: .8em;              
+    }
+    input:focus{
+        background-color: #c3c9d6;
+        border:.15em solid #2f3033;
+    }
+    button{
+        cursor: pointer;
+        padding: .3em .3em;
+        margin: .3em .3em;
+        font-size: .8em;
+        border: none;
+        width: 10em;
+        background-color: rgb(57, 98, 187);
+    }
+}
+div.errorMessage{
+    padding: .1em;
+    font-size: .7em;
+}

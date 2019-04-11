@@ -1,0 +1,19 @@
+form{
+    input{
+        height: 1.6em;
+        border-radius: 4px;
+        margin: .5em;
+        font-size: 1em;              
+    }
+    input:focus{
+        background-color: #c3c9d6;
+        border:.15em solid #2f3033;
+    }
+}
+table{
+    border: .3em solid black;
+    th,td{
+        padding: .7em;
+        border: .1em solid black;
+    }    
+}

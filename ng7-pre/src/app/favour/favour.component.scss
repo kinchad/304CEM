@@ -1,0 +1,36 @@
+div.content{
+    display: flex;
+}
+form{
+    margin-left: 8em;
+    border:.1em solid gray;
+    border-radius: 4px;
+    width: fit-content;
+    padding: 1em;
+    font-size: 1em;
+    display: inline-block;
+
+    input{
+        height: 1.5em;
+        width: 10em;
+        border-radius: 4px;
+        margin: .5em;
+        font-size: .8em;
+    }
+    button{
+        cursor: pointer;
+        padding: .3em .3em;
+        margin: .3em .3em;
+        font-size: .8em;
+        border: none;
+        width: 10em;
+        background-color: rgb(57, 98, 187);
+    }
+}
+table{
+    border: .3em solid black;
+    th,td{
+        padding: .7em;
+        border: .1em solid black;
+    }
+}

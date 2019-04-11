@@ -1,0 +1,15 @@
+<header>
+<div class="container">
+  <div class='title'>{{ appTitle }}</div>
+  <nav>
+    <ul>
+      <li><a routerLink="/">Home</a></li>
+      <li><a routerLink="/forex">FOREX</a></li>
+      <li><a routerLink='/forecast'>Forecast</a></li>
+      <li><a routerLink='/favour'>Favour</a></li>
+      <li *ngIf="guestMode;else userMode"><a routerLink="/login">Login</a></li>
+      <ng-template #userMode><li><a routerLink="/login" (click)="logout()">Logout</a></li></ng-template>
+    </ul>
+  </nav>
+</div>
+</header>
